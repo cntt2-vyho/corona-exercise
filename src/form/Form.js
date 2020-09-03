@@ -105,7 +105,6 @@ class Form extends Component {
                             <div className="div-img">
                                 <img src={avatar} width="200px" height="200px" alt="Ảnh đang load, nếu không load được tức là hông có" />
                             </div>
-                            <p>ID: <i> {id}</i> </p>
                             <p>FIRSTNAME:  <i>{first_name}</i> </p>
                             <p>LASTNAME:  <i>{last_name}</i> </p>
                             <p>EMAIL:  <i>{email}</i> </p>
