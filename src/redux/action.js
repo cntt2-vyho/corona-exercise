@@ -11,6 +11,7 @@ export const getDataFailAction = error => ({
     type: "GET_DATA_FAIL",
     payload: error
 });
+var list = [];
 export const getData = () => {
     return dispatch => {
         try {
@@ -20,7 +21,16 @@ export const getData = () => {
                     return response.json()
                 })
                 .then(data => {
-                    dispatch(getDataSuccessAction(data.data))
+                   data.data.map(value => list.push(value));
+                })
+
+                fetch("https://reqres.in/api/users?page=2")
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    data.data.map(value => list.push(value));
+                    dispatch(getDataSuccessAction(list))
                 })
                 
         } catch (error) {
