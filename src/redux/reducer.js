@@ -38,15 +38,14 @@ function rootReducer(state = initialState, action) {
                 listData: state.listData.filter(item => item.id !== action.id)
             };
         case "UPDATE_USER":
-            var dem=0;
-            for(var i = 0; i < state.listData.length; i++){
-                // nếu là sinh viên cần edit thì thực hiện edit
-                if (state.listData[i].id === action.updateUser.id) { 
+            var dem = 0;
+            for (var i = 0; i < state.listData.length; i++) {
+                if (state.listData[i].id === action.updateUser.id) {
                     state.listData[i] = action.updateUser;
                     dem++;
                 }
             }
-            if(dem===0) {
+            if (dem === 0) {
                 state.listData.push(action.updateUser)
 
             }
@@ -55,10 +54,10 @@ function rootReducer(state = initialState, action) {
                 ...state
             }
         case "CLOSE":
-            return { ...state, editForm: false, editItem: {} , isAdd: false}
+            return { ...state, editForm: false, editItem: {}, isAdd: false }
         case "OPEN":
             return { ...state, editForm: true }
-            case "IS_ADD":
+        case "IS_ADD":
             return { ...state, isAdd: true }
         default:
             return state;

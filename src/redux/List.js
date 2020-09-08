@@ -40,24 +40,25 @@ class List extends Component {
     render() {
         const list = this.props.listData.map((value) => {
             return (
-                <tr key={value.id}>
-                    <td>{value.id} </td>
-                    <td><img src={value.avatar} alt="Hông tìm thấy ảnh của anh nàii" /></td>
-                    <td>{value.first_name} {value.last_name} </td>
-                    <td>{value.email} </td>
-                    <td>
+                <div className="col-lg-4 col-md-4 col-sm-4 col-4 list-item" key={value.id}>
+                    <div className="div-option">
                         <button onClick={() => this.editItem(value)} className="btn-option btn-edit" >Edit</button>
-                        <button onClick={() => this.props.deleteItem(value.id)}  className="btn-option btn-delete"  >Del</button>
-                    </td>
-                </tr>
+                        <button onClick={() => this.props.deleteItem(value.id)} className="btn-option btn-delete"  >Del</button>
+                    </div>
+                    <div className="div-img-list">
+                        <img src={value.avatar} alt="Hông tìm thấy ảnh của anh nàii" />
+                    </div>
+                    <p>{value.first_name} {value.last_name}</p>
+                    <p>{value.email}</p>
 
+                </div>
             )
         })
         return (
             <div className="list-container">
                 <h1>LIST USER</h1>
                 <button onClick={() => this.addUser()} className="btn btn-add">Add user</button>
-                <table>
+                {/* <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -69,13 +70,17 @@ class List extends Component {
                     </thead>
                     <tbody>
                         {this.props.listData.length === 0 && <p>Nothing here ??!!!</p>}
-                        {list}
+                        
                     </tbody>
-                </table>
-                {
-                    this.show()
+                </table> */}
+                <div className="row">
+                    {list}{
+                        this.show()
 
-                }
+                    }
+                </div>
+
+
 
             </div>
         )

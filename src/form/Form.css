@@ -87,18 +87,19 @@ label {
     border: solid 1px #ff6699;
     color: #000;
     margin: 10px 0;
+    max-width: 100px;
+    float: right;
 }
 .btn-add:hover {
     background-color: #ff6699;
 }
 .btn-option {
-    width: 30%;
-    background-color: #fff;    
-	padding: 10px 0;
+    background-color: #fff;
 	text-align: center;
     cursor: pointer;
     outline: none;
     margin: 0 3px;
+    padding: 10px 20px;
 
 }
 .btn-edit {
@@ -117,4 +118,12 @@ label {
 .btn-delete:hover {
     background-color: #336699;
     color: #fff;
+}
+.list-container h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+}
+.row {
+    overflow: hidden;
 }
