@@ -34,7 +34,7 @@ export const getData = () => {
                 })
                 
         } catch (error) {
-            console.log(error);
+                
             dispatch(getDataFailAction(error))
         }
 

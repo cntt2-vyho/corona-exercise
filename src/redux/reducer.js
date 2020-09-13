@@ -46,7 +46,17 @@ function rootReducer(state = initialState, action) {
                 }
             }
             if (dem === 0) {
-                state.listData.push(action.updateUser)
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(action.updateUser)
+                    };
+                    fetch('https://reqres.in/api/users', requestOptions)
+                        .then(response => response.json())
+                        .then(data => console.log(data));
+
+
+                        
 
             }
             //state.listData[action.updateUser.id] = action.updateUser;
