@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import './Form.css'
 
@@ -9,11 +9,7 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
-            first_name: '',
-            last_name: '',
-            avatar: '',
-            email: '',
+            object: {}
         }
 
     }
@@ -26,11 +22,7 @@ class Form extends Component {
         }
         else {
             this.setState({
-                id: this.props.editItem.id,
-                first_name: this.props.editItem.first_name,
-                last_name: this.props.editItem.last_name,
-                avatar: this.props.editItem.avatar,
-                email: this.props.editItem.email
+               object: this.props.editItem
             })
         }
     }
@@ -46,14 +38,10 @@ class Form extends Component {
     }
     save() {
         let data = {
-            id: this.state.id,
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            avatar: this.state.avatar,
-            email: this.state.email,
+            name: "hihi"
         }
-        this.props.updateUser(data);
-        this.props.close();
+        // this.props.updateUser(data);
+        // this.props.close();
 
         console.log(data);
     }
@@ -62,7 +50,7 @@ class Form extends Component {
         this.props.close();
     }
     render() {
-        const { id, first_name, last_name, email, avatar } = this.state;
+        const { object } = this.state;
         // console.log("here", this.state);
         // console.log("there", this.props.editItem);
 
@@ -76,20 +64,19 @@ class Form extends Component {
                     <div className="form-edittext">
                         <div className="formcontai">
                             <div className="form-group">
-                                <label>Avatar: </label>
-                                <input name="avatar" value={avatar} onChange={(event => this.isChange(event))} />
+                                <label>Title: </label>
+                                <input name="title" value={object.title} required onChange={(event => this.isChange(event))} />
                             </div>
                             <div className="form-group">
-                                <label>Firstname: </label>
-                                <input name="first_name" value={first_name} onChange={(event => this.isChange(event))} />
+                                <label>Description : </label>
+                                <input name="description" value={object.description}  required onChange={(event => this.isChange(event))} />
                             </div>
                             <div className="form-group">
-                                <label>Lastname: </label>
-                                <input name="last_name" value={last_name} onChange={(event => this.isChange(event))} />
+                                <label>Content: </label>
+                                <input name="content" value={object.content}  required onChange={(event => this.isChange(event))} />
                             </div>
                             <div className="form-group">
-                                <label>Email: </label>
-                                <input name="email" value={email} onChange={(event => this.isChange(event))} />
+                                <p><i class="fa fa-eye" aria-hidden="true"></i> {object.view} </p>
                             </div>
                             <div className="form-group">
                                 <button type="button" className="btn btn-save" onClick={() => this.save()}>Save</button>
@@ -103,11 +90,11 @@ class Form extends Component {
                     <div className="form-overview">
                         <div className="formcontai">
                             <div className="div-img">
-                                <img src={avatar} width="200px" height="200px" alt="Ảnh đang load, nếu không load được tức là hông có" />
+                                <img src={object.image} width="200px" height="200px" alt='notfound' />
                             </div>
-                            <p>FIRSTNAME:  <i>{first_name}</i> </p>
-                            <p>LASTNAME:  <i>{last_name}</i> </p>
-                            <p>EMAIL:  <i>{email}</i> </p>
+                            <p>Title:  <i>{object.title}</i> </p>
+                            <p>Description:  <i>{object.description}</i> </p>
+                            <div>Content:  <div className="scroll-bar" ><i>{object.content}</i></div> </div>
                         </div>
 
                     </div>

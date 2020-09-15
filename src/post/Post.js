@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getData } from './action';
+import React, { Component } from 'react'
+import { getData } from '../redux/action';
 import Form from './../form/Form';
+import { connect } from 'react-redux';
 
-
-class List extends Component {
+class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +37,7 @@ class List extends Component {
     }
 
     render() {
-        const list = this.props.listData.map((value) => {
+        const list = this.props.posts.map((value) => {
             return (
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4 list-item" key={value.id}>
                     <div className="div-option">
@@ -49,29 +48,16 @@ class List extends Component {
                         <img src={value.image} alt="Hông tìm thấy ảnh của anh nàii" />
                     </div>
                     <p>{value.title} </p>
+                    <p><i> {value.description} </i></p>
+                    <p><b><i class="fa fa-eye" aria-hidden="true"></i> {value.view} </b></p>
 
                 </div>
             )
         })
         return (
             <div className="list-container">
-                <h1>LIST USER</h1>
-                <button onClick={() => this.addUser()} className="btn btn-add">Add user</button>
-                {/* <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>IMAGE</th>
-                            <th>FULLNAME</th>
-                            <th>EMAIL</th>
-                            <th>OPTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.listData.length === 0 && <p>Nothing here ??!!!</p>}
-                        
-                    </tbody>
-                </table> */}
+                <h1>POSTS</h1>
+                <button onClick={() => this.addUser()} className="btn btn-add">Add Post</button>
                 <div className="row">
                     {list}{
                         this.show()
@@ -87,7 +73,7 @@ class List extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        listData: state.listData,
+        posts: state.posts,
         editForm: state.editForm
     }
 }
@@ -110,4 +96,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
